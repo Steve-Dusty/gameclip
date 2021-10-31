@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block title %} Index {% endblock title %}
+{% block content %}
+    <h1>Gameclip Videos</h1>
+    {% for video in videos %}
+        <div class="video">
+            <h2>{{ video.title }}</h2>
+            <video
+            id="my-video"
+            class="video-js"
+            controls
+            preload="auto"
+            width="640"
+            height="400"
+            poster="MY_VIDEO_POSTER.jpg"
+            data-setup="{}">
+                
+                <source src="{{ video.video_file.url }}" type="video/mp4">
+            </video>
+            <p>{{ video.url }}</p>
+            <p>{{ video.description }}</p>
+        </div>
+    {% endfor %}
+{% endblock %}

@@ -1,0 +1,5 @@
+# Project exclude paths
+/venv/
+media/videos/*
+db.sqlite3
+.idea
