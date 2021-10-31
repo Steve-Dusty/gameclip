@@ -1,6 +1,5 @@
 from django.shortcuts import render
 from .models import Video
-from .forms import UploadVideoForm
 
 
 def index(request):
@@ -10,9 +9,7 @@ def index(request):
 
 
 def upload_video(request):
-    # form = UploadVideoForm()
     if request.method == 'POST':
-        # form = UploadVideoForm(request.POST, request.FILES)
         title = request.POST['title']
         description = request.POST['description']
         video = request.FILES['video_file']
