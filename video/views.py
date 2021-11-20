@@ -14,7 +14,8 @@ def upload_video(request):
         description = request.POST['description']
         video = request.FILES['video_file']
         unlisted = request.POST.get('unlisted', False)
-        video = Video(title=title, description=description, video_file=video, unlisted=unlisted)
+        creator = request.POST.get()
+        video = Video(title=title, description=description, video_file=video, unlisted=unlisted, creator='auth.USER') #CREATOR DOES NOT WORK
         video.save()
         print(video)
 
