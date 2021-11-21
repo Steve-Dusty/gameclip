@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block title %} Dashboard {% endblock title %}
+
+{% block content %}
+
+    {% if user.is_authenticated %}
+        <h1>Dashboard - {{ request.user }}</h1>
+    {% endif %}
+
+    <h2>Your clips: </h2>
+    {% for video in videos %}  
+        <div style="background-color: yellowgreen">
+        <h2>Clip: {{ video.title }}</h2>
+        <p>Description: {{ video.description }}</p>
+        <p>Unlisted: {{ video.unlisted }}</p>
+        </div>
+    {% endfor %}
+
+{% endblock content %}

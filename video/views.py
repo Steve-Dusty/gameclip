@@ -17,6 +17,10 @@ def upload_video(request):
         creator = request.user
         video = Video(title=title, description=description, video_file=video, unlisted=unlisted, creator=creator)
         video.save()
-        print(video)
 
     return render(request, 'upload.html')
+
+def dashboard(request):
+    videos = Video.objects.all()
+    context = {'videos': videos}
+    return render(request, 'dashboard.html', context=context)
