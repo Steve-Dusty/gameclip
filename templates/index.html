@@ -4,9 +4,16 @@
 {% block content %}
     <h1>Game clips</h1>
     <div class="account_buttons" style="background-color: lightblue">
-        <h2>Join!</h2>
-        <a href="{% url 'login' %}">Login</a>
-        <a href="{% url 'signup' %}">Signup</a>
+        {% if request.user %}
+            <p>Welcome {{ request.user }}</p> <br>
+                <a href="{% url 'logout' %}">Logout</a>
+            {% else %}
+                <h2>Join!</h2>
+                <a href="{% url 'login' %}">Login</a>
+                <a href="{% url 'signup' %}">Signup</a>
+        {% endif %}
+
+        
     </div>
     {% for video in videos %}
         {% if video.unlisted == False %}
@@ -25,7 +32,7 @@
                 <source src="{{ video.video_file.url }}" type="video/mp4">
             </video>
             <p>{{ video.url }}</p>
-            <p>{{ video.description }}</p>
+            <p>Description: {{ video.description }}</p>
         </div>
         {% endif %}
     {% endfor %}
