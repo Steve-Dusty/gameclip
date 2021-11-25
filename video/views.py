@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
 from .models import Video
 
@@ -17,8 +17,11 @@ def upload_video(request):
         video = request.FILES['video_file']
         unlisted = request.POST.get('unlisted', False)
         creator = request.user
-        video = Video(title=title, description=description, video_file=video, unlisted=unlisted, creator=creator)
-        video.save()
+        clip = Video(title=title, description=description, video_file=video, unlisted=unlisted, creator=creator)
+        if video.size > 524288000:
+            return redirect('upload_video')
+        else:
+            clip.save()
 
     return render(request, 'upload.html')
 
