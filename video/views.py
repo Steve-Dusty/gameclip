@@ -1,4 +1,5 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
+from django.contrib.auth.decorators import login_required
 from .models import Video
 
 
@@ -8,6 +9,7 @@ def index(request):
     return render(request, 'index.html', context=context)
 
 
+@login_required(login_url='/accounts/login/')
 def upload_video(request):
     if request.method == 'POST':
         title = request.POST['title']
@@ -20,7 +22,17 @@ def upload_video(request):
 
     return render(request, 'upload.html')
 
+
+@login_required(login_url='/accounts/login/')
 def dashboard(request):
-    videos = Video.objects.all()
+    videos = Video.objects.all().filter(
+        creator=request.user
+    )
     context = {'videos': videos}
     return render(request, 'dashboard.html', context=context)
+
+
+def video_detail(request, pk):
+    video = get_object_or_404(Video, pk=pk)
+    context = {"video": video}
+    return render(request, 'video.html', context=context)

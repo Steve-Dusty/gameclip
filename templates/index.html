@@ -1,23 +1,23 @@
 {% extends 'base.html' %}
 
-{% block title %} Index {% endblock title %}
+{% block title %} Home {% endblock title %}
 {% block content %}
     <h1>Game clips</h1>
     <div class="account_buttons" style="background-color: lightblue">
         {% if request.user.is_authenticated %}
             <p>Welcome {{ request.user }}</p> <br>
-                <a href="{% url 'logout' %}">Logout</a>
+                <a href="{% url 'logout' %}">Logout | </a>
+                <a href="{% url 'dashboard' %}">Dashboard | </a>
+                <a href="{% url 'upload_video' %}">Upload | </a>
             {% else %}
                 <h2>Join!</h2>
                 <a href="{% url 'login' %}">Login</a>
                 <a href="{% url 'signup' %}">Signup</a>
         {% endif %}
-
-        
     </div>
     {% for video in videos %}
         {% if video.unlisted == False %}
-        <div class="video">
+        <div class="video" style="border-style: solid; background-color: yellowgreen;">
             <h2>{{ video.title }}</h2>
             <p>Creator: {{ video.creator }}</p>
             <video

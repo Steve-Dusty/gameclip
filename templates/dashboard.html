@@ -3,18 +3,19 @@
 {% block title %} Dashboard {% endblock title %}
 
 {% block content %}
-
-    {% if user.is_authenticated %}
-        <h1>Dashboard - {{ request.user }}</h1>
-    {% endif %}
+    <a href="/">Home</a>
+    <h1>Dashboard - {{ request.user }}</h1>
 
     <h2>Your clips: </h2>
     {% for video in videos %}  
-        <div style="background-color: yellowgreen">
-        <h2>Clip: {{ video.title }}</h2>
+        <div style="background-color: yellowgreen; border-style: solid;">
+        <a href="{% url 'video_detail' video.pk %}">Clip: {{ video.title }}</a>
         <p>Description: {{ video.description }}</p>
         <p>Unlisted: {{ video.unlisted }}</p>
+        <span>Shareable link: </span>&nbsp;<a href="{% url 'video_detail' video.pk %}">{% url 'video_detail' video.pk %}</a>
+
         </div>
+
     {% endfor %}
 
 {% endblock content %}

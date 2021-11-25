@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <a href="/">Home</a>
+    <h2>{{ video.title }}</h2>
+    <p>Creator: {{ video.creator }}</p>
+            <video
+                id="my-video"
+                class="video-js"
+                controls
+                preload="auto"
+                width="640"
+                height="400"
+                data-setup="{}">
+                <source src="{{ video.video_file.url }}" type="video/mp4">
+            </video>
+            <p>{{ video.url }}</p>
+            <p>Description: {{ video.description }}</p>
+
+{% endblock content %}

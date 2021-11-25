@@ -1,5 +1,6 @@
 from django.core.files.storage import FileSystemStorage
 from django.db import models
+from django.urls import reverse
 
 
 class Video(models.Model):
@@ -14,3 +15,4 @@ class Video(models.Model):
 
     def __str__(self):
         return self.title
+
