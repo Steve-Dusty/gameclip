@@ -22,7 +22,7 @@ def upload_video(request):
             return redirect('upload_video')
         else:
             clip.save()
-
+            return redirect('index')
     return render(request, 'upload.html')
 
 
