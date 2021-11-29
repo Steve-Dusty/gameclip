@@ -1,6 +1,7 @@
 # Project exclude paths
 /venv/
 media/videos/*
+/static/*
 db.sqlite3
 .idea
 __pycache__/
