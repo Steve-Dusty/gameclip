@@ -18,7 +18,7 @@
     {% for video in videos %}
         {% if video.unlisted == False %}
         <div class="video" style="border-style: solid; background-color: yellowgreen;">
-            <h2>{{ video.title }}</h2>
+            <a href="{% url 'video_detail' video.pk  %}" style="font-size: 25px;">{{ video.title }}</a>
             <p>Creator: {{ video.creator }}</p>
             <video
             id="my-video"

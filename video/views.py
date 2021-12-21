@@ -4,7 +4,7 @@ from .models import Video
 
 
 def index(request):
-    videos = Video.objects.all()
+    videos = Video.objects.all().order_by('-id')
     context = {'videos': videos}
     return render(request, 'index.html', context=context)
 
@@ -34,6 +34,11 @@ def dashboard(request):
     context = {'videos': videos}
     return render(request, 'dashboard.html', context=context)
 
+@login_required(login_url='/accounts/login/')
+def delete_video(request, pk):
+    video = Video.objects.get(id=pk)
+    video.delete()
+    return redirect('dashboard')
 
 def video_detail(request, pk):
     video = get_object_or_404(Video, pk=pk)

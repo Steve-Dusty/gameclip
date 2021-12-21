@@ -9,7 +9,8 @@
     <h2>Your clips: </h2>
     {% for video in videos %}  
         <div style="background-color: yellowgreen; border-style: solid;">
-        <a href="{% url 'video_detail' video.pk %}">Clip: {{ video.title }}</a>
+        <a href="{% url 'video_detail' video.pk %}">Clip: {{ video.title }}</a> <br>
+        <a href="{% url 'delete_video' video.pk %}">Delete {{ video.title }}: NO WARNING</a>
         <p>Description: {{ video.description }}</p>
         <p>Unlisted: {{ video.unlisted }}</p>
         <span>Shareable link: </span>&nbsp;<a href="{% url 'video_detail' video.pk %}">{% url 'video_detail' video.pk %}</a>
