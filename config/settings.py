@@ -24,7 +24,7 @@ SECRET_KEY = env.str("SECRET_KEY")
 
 DEBUG = env.bool("DEBUG", default=False)
 
-ALLOWED_HOSTS = ["67.205.151.131", "localhost", "127.0.0.1", "0.0.0.0"]
+ALLOWED_HOSTS = ["67.205.151.131", "localhost", "127.0.0.1", "0.0.0.0", "gameclip.applikuapp.com"]
 
 # Application definition
 
