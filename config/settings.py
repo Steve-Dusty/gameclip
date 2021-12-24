@@ -11,18 +11,19 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
 from pathlib import Path
-from environs import Env
+import environ
 import os
 
-
-env = Env()
-env.read_env()
+env = environ.Env(
+    # set casting, default value
+    DEBUG=(bool, False)
+)
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = env.str("SECRET_KEY")
+SECRET_KEY = env('SECRET_KEY')
 
-DEBUG = env.bool("DEBUG", default=False)
+
 
 ALLOWED_HOSTS = ["67.205.151.131", "localhost", "127.0.0.1", "0.0.0.0", "gameclip.applikuapp.com"]
 
@@ -73,7 +74,7 @@ WSGI_APPLICATION = 'config.wsgi.application'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
 DATABASES = {
-    'default': env.db(),
+    'default': env.db("DATABASE_URL")
 }
 
 # if DEBUG:
