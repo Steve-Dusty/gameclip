@@ -1,11 +1,14 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
+from django.db.models import Count
 from .models import Video
-
+from comment.models import Comment
 
 def index(request):
     videos = Video.objects.all().order_by('-id')
-    context = {'videos': videos}
+    comments = Comment.objects.all() 
+    #comments = Comment.objects.values('id').annotate(c) MAKE IT SO IT GETS TOP 5 COMMENTS IN HOME PAGE
+    context = {'videos': videos, 'comments': comments}
     return render(request, 'index.html', context=context)
 
 

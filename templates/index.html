@@ -33,6 +33,12 @@
             </video>
             <p>{{ video.url }}</p>
             <p>Description: {{ video.description }}</p>
+            <div style="border-style: solid; background-color:pink">
+                {% for comment in video.comment_set.all %}
+                    <b>{{ comment.author }}:</b>
+                    <p>{{ comment.content }}</p>
+                {% endfor %}
+            </div>
         </div>
         {% endif %}
     {% endfor %}

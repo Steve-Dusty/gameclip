@@ -11,18 +11,17 @@ class Migration(migrations.Migration):
 
     dependencies = [
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
+        ('video', '0001_initial'),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='Video',
+            name='Comment',
             fields=[
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('video_file', models.FileField(upload_to='videos/')),
-                ('title', models.CharField(max_length=50)),
-                ('description', models.TextField(blank=True, default='No Description')),
-                ('unlisted', models.BooleanField(default=False)),
-                ('creator', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
+                ('content', models.TextField()),
+                ('author', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
+                ('video', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='video.video')),
             ],
         ),
     ]
